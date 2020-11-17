@@ -1,22 +1,23 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
-import { WelcomeScreen, HomeScreen } from '../screens';
+
+import { HomeStackNavigator, LoginStackNavigator } from './stacks';
 import { navigationRef } from '../services/navigator';
 import { WITHOUT_HEADER_OPTIONS } from './options';
 
-type RootParams = {
-  Welcome: undefined;
-  Home: undefined;
+export type RootStackParams = {
+  LoginStack: undefined;
+  HomeStack: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootParams>();
+const Stack = createNativeStackNavigator<RootStackParams>();
 
 const RootNavigator = () => (
   <NavigationContainer ref={navigationRef}>
     <Stack.Navigator screenOptions={WITHOUT_HEADER_OPTIONS}>
-      <Stack.Screen name="Welcome" component={WelcomeScreen} />
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="LoginStack" component={LoginStackNavigator} />
+      <Stack.Screen name="HomeStack" component={HomeStackNavigator} />
     </Stack.Navigator>
   </NavigationContainer>
 );
