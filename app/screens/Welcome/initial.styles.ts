@@ -1,14 +1,14 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 import COLORS from '../../utils/colors';
 
-interface InitialScreenStyles {
-  root: ViewStyle;
+interface WelcomeScreenStyles {
+  container: ViewStyle;
 }
 
-export const styles = StyleSheet.create<InitialScreenStyles>({
-  root: {
+export const styles = StyleSheet.create<WelcomeScreenStyles>({
+  container: {
     flex: 1,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLORS.PRIMARY_BLUE,
     alignItems: 'center',
     justifyContent: 'center',
   },

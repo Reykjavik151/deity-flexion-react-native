@@ -10,7 +10,7 @@ interface HomeScreenStyles {
 export const styles = StyleSheet.create<HomeScreenStyles>({
   root: {
     flex: 1,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLORS.PRIMARY_BLUE,
   },
   body: {
     padding: 20,

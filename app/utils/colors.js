@@ -1,6 +1,6 @@
 export default {
-  PRIMARY: '#004B8F',
-  WHITE: 'white',
-  BLACK: '#333',
-  BORDER: '#e2e2e2',
+  PRIMARY_BLUE: '#4fc3f7',
+  WHITE: '#ffffff',
+  BLACK: '#000000',
+  ALMOST_BLACK: '#333',
 };

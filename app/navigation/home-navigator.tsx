@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
-import { InitialScreen } from '../screens';
+import { WelcomeScreen } from '../screens';
 
 type HomeParams = {
   Initial: undefined;
@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator<HomeParams>();
 
 const RootNavigator = () => (
   <Stack.Navigator>
-    <Stack.Screen name="Home" component={InitialScreen} />
+    <Stack.Screen name="Home" component={WelcomeScreen} />
   </Stack.Navigator>
 );
 
