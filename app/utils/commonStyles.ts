@@ -5,6 +5,7 @@ interface CommonStyles {
   centeredContainer: ViewStyle;
   rowContainer: ViewStyle;
   mb18: ViewStyle;
+  w100: ViewStyle;
 }
 
 export const COMMON_STYLES = StyleSheet.create<CommonStyles>({
@@ -21,5 +22,8 @@ export const COMMON_STYLES = StyleSheet.create<CommonStyles>({
   },
   mb18: {
     marginBottom: 18,
+  },
+  w100: {
+    width: '100%',
   },
 });

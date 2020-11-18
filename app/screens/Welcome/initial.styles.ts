@@ -1,14 +1,12 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 import { COLORS } from '../../utils/colors';
+import { ILinesStyles } from '../../utils/types';
 
-interface WelcomeScreenStyles {
+interface WelcomeScreenStyles extends ILinesStyles {
   container: ViewStyle;
   upperFirstLineContainer: ViewStyle;
   upperSecondLineContainer: ViewStyle;
   deityFlexionTitle: TextStyle;
-  line1: ViewStyle;
-  line3: ViewStyle;
-  line4: ViewStyle;
   buttonTitle: TextStyle;
 }
 

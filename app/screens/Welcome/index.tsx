@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useCallback } from 'react';
 import { SafeAreaView, View, TouchableOpacity, Text } from 'react-native';
 
-import { Line } from '../../components/Line';
+import { Line } from '../../components';
 import { LINE_HEIGHT } from '../../components/Line/line.presets';
 import { COMMON_STYLES } from '../../utils/commonStyles';
 import { WelcomeScreenProps } from './initial.props';
