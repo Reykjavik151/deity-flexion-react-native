@@ -38,7 +38,6 @@ const styles: ScenePresetStyles = {
       height: width * 3,
       borderRadius: width * 1.5,
       alignSelf: 'center',
-      backgroundColor: COLORS.PRIMARY,
     },
     safeArea: {
       flex: 1,

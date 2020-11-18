@@ -10,7 +10,7 @@ export const HomeScreen: FunctionComponent<HomeScreenProps> = () => {
   const user = useUserAccount();
 
   return (
-    <SafeAreaView style={styles.root}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.body}>
         <Text preset="title">IvorySoft</Text>
         <Text preset="default">ReactNative Boilerplate</Text>
