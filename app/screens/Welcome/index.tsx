@@ -17,33 +17,18 @@ export const WelcomeScreen: FunctionComponent<WelcomeScreenProps> = (
         <Line
           height={18}
           isCompleted={false}
-          style={{
-            lineContainer: styles.upperFirstLineContainer,
-          }}
+          style={{ lineContainer: styles.upperFirstLineContainer }}
         />
         <Line
           height={18}
           isCompleted={false}
-          style={{
-            lineContainer: styles.upperSecondLineContainer,
-          }}
+          style={{ lineContainer: styles.upperSecondLineContainer }}
         />
         <Text style={styles.deityFlexionTitle}>{'Deity\nFlexion'}</Text>
       </View>
       <View style={COMMON_STYLES.flexContainer}>
-        <Line
-          height={12}
-          isCompleted={false}
-          style={{
-            lineContainer: styles.line1,
-          }}
-        />
-        <Line
-          height={18}
-          style={{
-            lineContainer: COMMON_STYLES.mb18,
-          }}
-        />
+        <Line height={12} isCompleted={false} style={{ lineContainer: styles.line1 }} />
+        <Line height={18} style={{ lineContainer: COMMON_STYLES.mb18 }} />
 
         <TouchableOpacity onPress={() => {}}>
           <Line
