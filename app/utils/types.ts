@@ -6,3 +6,5 @@ export interface ILinesStyles {
   line3?: ViewStyle;
   line4?: ViewStyle;
 }
+
+export type VerticalPosition = 'bottom' | 'top';

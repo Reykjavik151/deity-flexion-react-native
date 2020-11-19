@@ -1,3 +1,4 @@
+export * from './DefaultHeader';
 export * from './DefaultLineInput';
 export * from './Line';
 export * from './LoadingOverlay';
