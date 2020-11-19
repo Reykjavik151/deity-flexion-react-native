@@ -42,6 +42,7 @@ const saveUserCredentials: Handler<SaveUserCredentialsAction> = (state, { userCr
 
 const setError: Handler<SetErrorAction> = (state, { error }) => ({
   ...state,
+  isLoading: false,
   error,
 });
 
