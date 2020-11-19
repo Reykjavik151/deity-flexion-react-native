@@ -1,12 +1,17 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import { Line, LoginForm } from '../../components';
 import { LINE_HEIGHT } from '../../components/Line/line.presets';
+import { useRegisterCallback } from '../../redux/user';
 import { RegisterScreenProps } from './register.props';
 import { styles } from './register.styles';
 
-export const RegisterScreen: React.FunctionComponent<RegisterScreenProps> = ({}) => {
+export const RegisterScreen: React.FunctionComponent<RegisterScreenProps> = () => {
+  const dispatch = useDispatch();
+  const onRegister = useRegisterCallback(dispatch);
+
   return (
     <SafeAreaView style={styles.container}>
       <Line
@@ -31,7 +36,7 @@ export const RegisterScreen: React.FunctionComponent<RegisterScreenProps> = ({})
           lineContainer: styles.line4,
         }}
       />
-      <LoginForm submitButtonText="Register" onSubmit={() => {}} />
+      <LoginForm submitButtonText="Register" onSubmit={onRegister} />
     </SafeAreaView>
   );
 };

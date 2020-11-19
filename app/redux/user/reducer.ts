@@ -1,46 +1,53 @@
 import { createReducer } from 'reduxsauce';
-import { User } from '../../services/api/api.types';
+import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import {
   UserAction,
   userActionTypes,
-  GetUserAccountAction,
-  GetUserAccountFailureAction,
-  GetUserAccountSuccessAction,
+  LoginAction,
+  RegisterAction,
+  SaveUserCredentialsAction,
+  SetErrorAction,
 } from './actions';
 
 export interface UserState {
   isLoading: boolean;
-  account: User | null;
+  userCredentials: FirebaseAuthTypes.UserCredential | null;
   error: string | null;
 }
 
 const INITIAL_STATE: UserState = {
   isLoading: false,
+  userCredentials: null,
   error: null,
-  account: null,
 };
 
 type Handler<A> = (state: UserState, action: A) => UserState;
 
-const getUserAccount: Handler<GetUserAccountAction> = (state) => ({
+const login: Handler<LoginAction> = (state) => ({
   ...state,
   isLoading: true,
 });
 
-const getUserAccountSuccess: Handler<GetUserAccountSuccessAction> = (state, { account }) => ({
+const register: Handler<RegisterAction> = (state) => ({
   ...state,
-  isLoading: false,
-  account,
+  isLoading: true,
 });
 
-const getUserAccountFailure: Handler<GetUserAccountFailureAction> = (state, { error }) => ({
+const saveUserCredentials: Handler<SaveUserCredentialsAction> = (state, { userCredentials }) => ({
   ...state,
+  userCredentials,
   isLoading: false,
+  error: null,
+});
+
+const setError: Handler<SetErrorAction> = (state, { error }) => ({
+  ...state,
   error,
 });
 
 export const userReducer = createReducer<UserState, UserAction>(INITIAL_STATE, {
-  [userActionTypes.GET_USER]: getUserAccount,
-  [userActionTypes.GET_USER_SUCCESS]: getUserAccountSuccess,
-  [userActionTypes.GET_USER_FAILURE]: getUserAccountFailure,
+  [userActionTypes.LOGIN]: login,
+  [userActionTypes.REGISTER]: register,
+  [userActionTypes.SAVE_USER_CREDENTIALS]: saveUserCredentials,
+  [userActionTypes.SET_ERROR]: setError,
 });

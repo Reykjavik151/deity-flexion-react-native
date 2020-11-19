@@ -1,8 +1,11 @@
 import { all, takeLatest } from 'redux-saga/effects';
-import { GetUserAccountAction, userActionTypes } from '../redux/user';
+import { userActionTypes, LoginAction, RegisterAction } from '../redux/user';
 
-import { getUser } from './user';
+import { login, register } from './user';
 
 export default function* rootSaga() {
-  yield all([takeLatest<GetUserAccountAction>(userActionTypes.GET_USER, getUser)]);
+  yield all([
+    takeLatest<LoginAction>(userActionTypes.LOGIN, login),
+    takeLatest<RegisterAction>(userActionTypes.REGISTER, register),
+  ]);
 }

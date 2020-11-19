@@ -1,13 +1,17 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import auth from '@react-native-firebase/auth';
+import { useDispatch } from 'react-redux';
 
 import { Line, LoginForm } from '../../components';
 import { LINE_HEIGHT } from '../../components/Line/line.presets';
 import { LoginScreenProps } from './login.props';
 import { styles } from './login.styles';
+import { useLoginCallback } from '../../redux/user';
 
-export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
+export const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
+  const dispatch = useDispatch();
+  const onLogin = useLoginCallback(dispatch);
+
   return (
     <SafeAreaView style={styles.container}>
       <Line
@@ -32,14 +36,7 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
           lineContainer: styles.line4,
         }}
       />
-      <LoginForm
-        submitButtonText="Login"
-        onSubmit={async (email: string, password: string) => {
-          console.tron.log('started');
-          const user = await auth().signInWithEmailAndPassword(email, password);
-          console.tron.log('user', user);
-        }}
-      />
+      <LoginForm submitButtonText="Login" onSubmit={onLogin} />
     </SafeAreaView>
   );
 };

@@ -1,42 +1,51 @@
 import { createActions } from 'reduxsauce';
-import { User } from '../../services/api/api.types';
+import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 interface UserActionTypes {
-  GET_USER: 'GET_USER';
-  GET_USER_SUCCESS: 'GET_USER_SUCCESS';
-  GET_USER_FAILURE: 'GET_USER_FAILURE';
+  REGISTER: 'REGISTER';
+  LOGIN: 'LOGIN';
+  SAVE_USER_CREDENTIALS: 'SAVE_USER';
+  SET_ERROR: 'SET_ERROR';
 }
 
-export interface GetUserAccountAction {
-  type: UserActionTypes['GET_USER'];
+export interface RegisterAction {
+  type: UserActionTypes['REGISTER'];
+  email: string;
+  password: string;
 }
 
-export interface GetUserAccountSuccessAction {
-  type: UserActionTypes['GET_USER_SUCCESS'];
-  account: User;
+export interface LoginAction {
+  type: UserActionTypes['LOGIN'];
+  email: string;
+  password: string;
 }
 
-export interface GetUserAccountFailureAction {
-  type: UserActionTypes['GET_USER_FAILURE'];
+export interface SaveUserCredentialsAction {
+  type: UserActionTypes['SAVE_USER_CREDENTIALS'];
+  userCredentials: FirebaseAuthTypes.UserCredential;
+}
+
+export interface SetErrorAction {
+  type: UserActionTypes['SET_ERROR'];
   error: string;
 }
 
 interface UserActionCreators {
-  getUserAccount(): GetUserAccountAction;
-  getUserAccountSuccess(info: User): GetUserAccountSuccessAction;
-  getUserAccountFailure(error: string): GetUserAccountFailureAction;
+  register(email: string, password: string): RegisterAction;
+  login(email: string, password: string): LoginAction;
+  saveUserCredentials(userCredentials: FirebaseAuthTypes.UserCredential): SaveUserCredentialsAction;
+
+  setError(error: string): SetErrorAction;
 }
 
-export type UserAction =
-  | GetUserAccountAction
-  | GetUserAccountSuccessAction
-  | GetUserAccountFailureAction;
+export type UserAction = RegisterAction | LoginAction | SaveUserCredentialsAction | SetErrorAction;
 
 const { Types, Creators } = createActions<UserActionTypes, UserActionCreators>(
   {
-    getUser: null,
-    getUserSuccess: ['info'],
-    getUserFailure: ['error'],
+    register: ['email, password'],
+    login: ['email', 'password'],
+    saveUserCredentials: ['userCredentials'],
+    setError: ['error'],
   },
   {
     prefix: 'USER/',
