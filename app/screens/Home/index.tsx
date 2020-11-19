@@ -10,11 +10,14 @@ import { COMMON_STYLES } from '../../utils/commonStyles';
 import { HomeScreenProps } from './home.props';
 import { styles } from './home.styles';
 
-export const HomeScreen: FunctionComponent<HomeScreenProps> = () => {
+export const HomeScreen: FunctionComponent<HomeScreenProps> = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={[COMMON_STYLES.flexContainer, COMMON_STYLES.centeredContainer]}>
-        <TouchableOpacity style={[styles.button, COMMON_STYLES.centeredContainer]}>
+        <TouchableOpacity
+          style={[styles.button, COMMON_STYLES.centeredContainer]}
+          onPress={() => navigation.navigate('Tasks')}
+        >
           <MaterialIcon name="check" size={115} color={COLORS.PRIMARY_BLUE} />
         </TouchableOpacity>
       </View>
