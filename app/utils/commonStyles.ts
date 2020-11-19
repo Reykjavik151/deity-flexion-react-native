@@ -8,6 +8,7 @@ interface CommonStyles {
   w100: ViewStyle;
   rotation270: ViewStyle;
   mb12: ViewStyle;
+  opacity70: ViewStyle;
 }
 
 export const COMMON_STYLES = StyleSheet.create<CommonStyles>({
@@ -33,5 +34,8 @@ export const COMMON_STYLES = StyleSheet.create<CommonStyles>({
   },
   rotation270: {
     transform: [{ rotate: '270deg' }],
+  },
+  opacity70: {
+    opacity: 0.7,
   },
 });

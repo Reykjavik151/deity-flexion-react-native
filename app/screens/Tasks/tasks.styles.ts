@@ -14,7 +14,7 @@ export default StyleSheet.create<TasksScreenStyles>({
   addButtonContainer: {
     backgroundColor: COLORS.WHITE,
     position: 'absolute',
-    bottom: 96,
+    bottom: 64,
     right: 16,
     borderRadius: 50,
     borderColor: 'silver',

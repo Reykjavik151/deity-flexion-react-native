@@ -18,9 +18,9 @@ export const TasksScreen: React.FunctionComponent<TasksScreenProps> = () => {
 
       <View style={COMMON_STYLES.flexContainer} />
 
-      <Line height={LINE_HEIGHT.SMALL} style={{ lineContainer: COMMON_STYLES.mb12 }} />
-      <Line height={LINE_HEIGHT.LARGE} style={{ lineContainer: COMMON_STYLES.mb12 }} />
-      <Line height={LINE_HEIGHT.LARGE} style={{ lineContainer: COMMON_STYLES.mb12 }} />
+      <Line height={LINE_HEIGHT.SMALL} />
+      <Line height={LINE_HEIGHT.LARGE} style={{ lineContainer: COMMON_STYLES.opacity70 }} />
+      <Line height={LINE_HEIGHT.LARGE} style={{ lineContainer: COMMON_STYLES.opacity70 }} />
       <Line height={LINE_HEIGHT.SMALL} />
 
       <TouchableOpacity onPress={onAddPress} style={styles.addButtonContainer}>
