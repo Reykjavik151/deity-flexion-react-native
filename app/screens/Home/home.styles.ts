@@ -1,21 +1,21 @@
-import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
 import { COLORS } from '../../utils/colors';
 
 interface HomeScreenStyles {
   container: ViewStyle;
-  body: ViewStyle;
-  description: TextStyle;
+  button: ViewStyle;
 }
 
 export const styles = StyleSheet.create<HomeScreenStyles>({
   container: {
     flex: 1,
     backgroundColor: COLORS.PRIMARY_BLUE,
+    alignItems: 'center',
   },
-  body: {
-    padding: 20,
-  },
-  description: {
-    marginTop: 15,
+  button: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    backgroundColor: COLORS.WHITE,
   },
 });
