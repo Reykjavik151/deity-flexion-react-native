@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react';
 import { enableScreens } from 'react-native-screens';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
+import './app/utils/icons';
 
 import { LoadingOverlay } from './app/components';
 import { store, persistedStore } from './app/redux';
