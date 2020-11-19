@@ -8,3 +8,7 @@ export const TRANSPARENT_MODAL_WITH_FADE_ANIM_OPTIONS: NativeStackNavigationOpti
   stackAnimation: 'fade',
   stackPresentation: 'transparentModal',
 };
+
+export const MODAL_WITH_FADE_ANIM_OPTIONS: NativeStackNavigationOptions = {
+  stackAnimation: 'fade',
+};

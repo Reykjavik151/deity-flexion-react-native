@@ -3,11 +3,21 @@ import { COLORS } from '../../utils/colors';
 
 interface TasksScreenStyles {
   container: ViewStyle;
+  addButtonContainer: ViewStyle;
 }
 
 export default StyleSheet.create<TasksScreenStyles>({
   container: {
     flex: 1,
     backgroundColor: COLORS.PRIMARY_BLUE,
+  },
+  addButtonContainer: {
+    backgroundColor: COLORS.WHITE,
+    position: 'absolute',
+    bottom: 96,
+    right: 16,
+    borderRadius: 50,
+    borderColor: 'silver',
+    borderWidth: 2,
   },
 });
