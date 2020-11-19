@@ -19,8 +19,8 @@ export const HomeScreen: FunctionComponent<HomeScreenProps> = () => {
         </TouchableOpacity>
       </View>
       <Line height={LINE_HEIGHT.SMALL} style={{ lineContainer: COMMON_STYLES.mb12 }} />
-      <Line height={LINE_HEIGHT.VERY_LARGE} style={{ lineContainer: COMMON_STYLES.mb12 }} />
-      <Line height={LINE_HEIGHT.VERY_LARGE} style={{ lineContainer: COMMON_STYLES.mb12 }} />
+      <Line height={LINE_HEIGHT.LARGE} style={{ lineContainer: COMMON_STYLES.mb12 }} />
+      <Line height={LINE_HEIGHT.LARGE} style={{ lineContainer: COMMON_STYLES.mb12 }} />
       <Line height={LINE_HEIGHT.SMALL} />
       <View style={[COMMON_STYLES.flexContainer, COMMON_STYLES.centeredContainer]}>
         <TouchableOpacity
