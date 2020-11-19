@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationContainerRef } from '@react-navigation/native';
-import { StackActions } from '@react-navigation/native';
+import { StackActions, CommonActions } from '@react-navigation/native';
 import { Action } from 'redux';
 
 export const navigationRef = React.createRef<NavigationContainerRef>();
@@ -28,6 +28,17 @@ export class StaticNavigator {
   static getCurretRoute() {
     if (navigationRef?.current) {
       return navigationRef.current.getCurrentRoute();
+    }
+  }
+
+  static resetTo(routeName: string, params?: any) {
+    if (navigationRef?.current) {
+      return navigationRef.current.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: routeName, params }],
+        }),
+      );
     }
   }
 }

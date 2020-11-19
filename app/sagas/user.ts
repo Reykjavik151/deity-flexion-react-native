@@ -22,7 +22,7 @@ export function* login({ email, password }: LoginAction) {
     yield put<SaveUserCredentialsAction>(
       userActionCreators.saveUserCredentials(userCredentialsResponse),
     );
-    yield call(StaticNavigator.navigateTo, 'Home');
+    yield call(StaticNavigator.resetTo, 'HomeStack');
   } catch (err) {
     yield put<SetErrorAction>(userActionCreators.setError(err));
   }
@@ -39,7 +39,7 @@ export function* register({ email, password }: RegisterAction) {
     yield put<SaveUserCredentialsAction>(
       userActionCreators.saveUserCredentials(userCredentialsResponse),
     );
-    yield call(StaticNavigator.navigateTo, 'Home');
+    yield call(StaticNavigator.resetTo, 'HomeStack');
   } catch (err) {
     yield put<SetErrorAction>(userActionCreators.setError(err));
   }

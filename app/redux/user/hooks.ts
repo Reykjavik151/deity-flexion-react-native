@@ -6,7 +6,10 @@ import { AppDispatch, RootState } from '..';
 import { userActionTypes } from './actions';
 
 // Selector hooks
-export const useUserAccount = () => useSelector((state: RootState) => state.user.credentials);
+export const useUserCredentials = () =>
+  useSelector((state: RootState) => state.user.userCredentials);
+
+export const useUserLoading = () => useSelector((state: RootState) => state.user.isLoading);
 
 // Callback hooks
 export const useLoginCallback = (dispatch: AppDispatch) =>

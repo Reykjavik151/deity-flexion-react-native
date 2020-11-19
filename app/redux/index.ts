@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore, StoreEnhancer } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import AsyncStorage from '@react-native-community/async-storage';
 import { persistStore, persistReducer, PersistConfig } from 'redux-persist';
+import AsyncStorage from '@react-native-community/async-storage';
 import reactotron from '../services/reactotron';
 import rootSaga from '../sagas';
 
@@ -15,6 +15,7 @@ export const rootReducer = combineReducers({
 const persistConfig: PersistConfig<ReturnType<typeof rootReducer>> = {
   key: 'root',
   storage: AsyncStorage,
+  whitelist: ['user'],
   blacklist: [],
 };
 
@@ -36,7 +37,10 @@ export const store = createStore(persistedReducer, compose(...enhancers));
 
 sagaMiddleware.run(rootSaga);
 
-persistStore(store);
+export const persistedStore = persistStore(store);
+
+// Uncomment this if you need to purge your cache in AsyncStorage
+// persistedStore.purge();
 
 export type AppDispatch = typeof store.dispatch;
 
