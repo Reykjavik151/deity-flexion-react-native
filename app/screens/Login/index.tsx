@@ -1,8 +1,9 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
+import auth from '@react-native-firebase/auth';
+
 import { Line, LoginForm } from '../../components';
 import { LINE_HEIGHT } from '../../components/Line/line.presets';
-
 import { LoginScreenProps } from './login.props';
 import { styles } from './login.styles';
 
@@ -31,7 +32,14 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
           lineContainer: styles.line4,
         }}
       />
-      <LoginForm submitButtonText="Login" onSubmit={() => {}} />
+      <LoginForm
+        submitButtonText="Login"
+        onSubmit={async (email: string, password: string) => {
+          console.tron.log('started');
+          const user = await auth().signInWithEmailAndPassword(email, password);
+          console.tron.log('user', user);
+        }}
+      />
     </SafeAreaView>
   );
 };
