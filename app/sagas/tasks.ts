@@ -1,6 +1,13 @@
 import { call, put, select } from 'redux-saga/effects';
 
-import { GetTasksFailureAction, GetTasksSuccessAction, tasksActionCreators } from '../redux/tasks';
+import {
+  GetTasksFailureAction,
+  GetTasksSuccessAction,
+  tasksActionCreators,
+  UpdateTaskAction,
+  UpdateTaskFailureAction,
+  UpdateTaskSuccessAction,
+} from '../redux/tasks';
 import { FirebaseHelper } from '../services/firebase';
 import { FIREBASE_TASKS_COLLECTION_NAME } from '../utils/constants';
 import { ITask } from '../utils/types';
@@ -22,3 +29,14 @@ export function* getTasks() {
 }
 
 export function addTask() {}
+
+export function* updateTask({ task }: UpdateTaskAction) {
+  try {
+    console.tron?.log(task);
+    yield FirebaseHelper.updateDoc<ITask>(FIREBASE_TASKS_COLLECTION_NAME, task);
+
+    yield put<UpdateTaskSuccessAction>(tasksActionCreators.updateTaskSuccess(task));
+  } catch (err) {
+    yield put<UpdateTaskFailureAction>(tasksActionCreators.updateTaskFailure(err));
+  }
+}

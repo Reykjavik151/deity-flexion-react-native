@@ -1,9 +1,9 @@
 import { all, takeLatest } from 'redux-saga/effects';
-import { GetTasksAction, tasksActionTypes } from '../redux/tasks';
+import { GetTasksAction, tasksActionTypes, UpdateTaskAction } from '../redux/tasks';
 import { userActionTypes, LoginAction, RegisterAction } from '../redux/user';
 
 import { login, register } from './user';
-import { getTasks } from './tasks';
+import { getTasks, updateTask } from './tasks';
 
 export default function* rootSaga() {
   yield all([
@@ -11,5 +11,6 @@ export default function* rootSaga() {
     takeLatest<RegisterAction>(userActionTypes.REGISTER, register),
 
     takeLatest<GetTasksAction>(tasksActionTypes.GET_TASKS, getTasks),
+    takeLatest<UpdateTaskAction>(tasksActionTypes.UPDATE_TASK, updateTask),
   ]);
 }

@@ -63,10 +63,7 @@ const addTaskFailure: Handler<AddTaskFailureAction> = (state, { error }) => ({
   error,
 });
 
-const updateTask: Handler<UpdateTaskAction> = (state) => ({
-  ...state,
-  isLoading: true,
-});
+const updateTask: Handler<UpdateTaskAction> = (state) => state;
 const updateTaskSuccess: Handler<UpdateTaskSuccessAction> = (state, { task }) => {
   const updatedTasks = [...state.tasks];
 

@@ -10,14 +10,14 @@ import { LINE_HEIGHT } from '../../components/Line/line.presets';
 import { COMMON_STYLES } from '../../utils/commonStyles';
 import { COLORS } from '../../utils/colors';
 import { useDispatch } from 'react-redux';
-import { useGetTasksCallback, useTasks } from '../../redux/tasks';
+import { useGetTasksCallback, useTasks, useUpdateTaskCallback } from '../../redux/tasks';
 import { TaskView } from '../../components/TaskView';
 import { ITask, Status } from '../../utils/types';
 
 export const TasksScreen: React.FunctionComponent<TasksScreenProps> = () => {
   const dispatch = useDispatch();
   const onGetTasks = useGetTasksCallback(dispatch);
-  const onUpdateTask = useCallback((task: ITask) => task, []);
+  const onUpdateTask = useUpdateTaskCallback(dispatch);
 
   const tasks = useTasks();
 
@@ -51,10 +51,12 @@ export const TasksScreen: React.FunctionComponent<TasksScreenProps> = () => {
 
       <View style={COMMON_STYLES.flexContainer}>
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={tasks}
           renderItem={({ item: task }) => (
             <TaskView task={task} onTaskPress={onTaskPress} onTaskLongPress={onTaskLongPress} />
           )}
+          keyExtractor={(item, index) => `task-${index}-${item.id}`}
           style={styles.taskList}
         />
       </View>

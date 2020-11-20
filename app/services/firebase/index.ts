@@ -28,8 +28,8 @@ export class FirebaseHelper {
     _.forEach(snapshots.docs, (doc) => {
       const docData: FirebaseFirestoreTypes.DocumentData = doc.data();
       const pushData: any = {
-        id: doc.id,
         ...docData,
+        id: doc.id,
       };
 
       resultArray.push(pushData);
