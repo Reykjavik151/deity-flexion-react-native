@@ -17,7 +17,6 @@ export const rootReducer = combineReducers({
 const persistConfig: PersistConfig<ReturnType<typeof rootReducer>> = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['user'],
   blacklist: [],
 };
 
