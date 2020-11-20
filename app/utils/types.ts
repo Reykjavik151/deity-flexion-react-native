@@ -10,8 +10,8 @@ export interface ILinesStyles {
 export type VerticalPosition = 'bottom' | 'top';
 
 export enum Status {
-  NONE,
-  COMPLETED,
+  NONE = 'none',
+  COMPLETED = 'completed',
 }
 
 export interface IWithID {

@@ -32,18 +32,6 @@ export class FirebaseHelper {
         ...docData,
       };
 
-      if (pushData.status) {
-        switch (docData.status) {
-          default:
-          case Status.NONE.toString().toLowerCase():
-            pushData.status = Status.NONE;
-            break;
-          case Status.COMPLETED.toString().toLowerCase():
-            pushData.status = Status.COMPLETED;
-            break;
-        }
-      }
-
       resultArray.push(pushData);
     });
 
