@@ -7,9 +7,11 @@ import rootSaga from '../sagas';
 
 // Reducers
 import { userReducer } from './user';
+import { tasksReducer } from './tasks';
 
 export const rootReducer = combineReducers({
   user: userReducer,
+  tasks: tasksReducer,
 });
 
 const persistConfig: PersistConfig<ReturnType<typeof rootReducer>> = {
