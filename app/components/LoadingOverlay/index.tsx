@@ -8,8 +8,8 @@ import { useTasksLoading } from '../../redux/tasks';
 
 const ANIMATION_DURATION_MS = 300;
 const LOADER_ANIMATION_STATE = {
-  ANIMATION_TO_BIG: 'big',
-  ABIMATION_TO_SMALL: 'small',
+  ANIMATION_TO_BIG: 'to-big',
+  ABIMATION_TO_SMALL: 'to-small',
 };
 const MIN_LOADER_SIZE = 32;
 const MAX_LOADER_SIZE = 64;
