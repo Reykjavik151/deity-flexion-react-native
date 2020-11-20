@@ -50,7 +50,7 @@ export class FirebaseHelper {
     return resultArray;
   }
 
-  static async addDocInCollection<T extends IWithID>(collectionName: string, item: T): Promise<T> {
+  static async addDoc<T extends IWithID>(collectionName: string, item: T): Promise<T> {
     const collectionRef: FirebaseFirestoreTypes.CollectionReference = firestore().collection(
       collectionName,
     );
@@ -63,10 +63,7 @@ export class FirebaseHelper {
     };
   }
 
-  static async updateDocInCollection<T extends IWithID>(
-    collectionName: string,
-    item: T,
-  ): Promise<T> {
+  static async updateDoc<T extends IWithID>(collectionName: string, item: T): Promise<T> {
     const itemId = item.id;
 
     const docRef: FirebaseFirestoreTypes.DocumentReference = firestore()
@@ -76,5 +73,11 @@ export class FirebaseHelper {
     const result: any = await docRef.update({ ...item, id: undefined });
 
     return { ...result, id: itemId };
+  }
+
+  static async deleteDoc(collectionName: string, itemId: string): Promise<boolean> {
+    await firestore().collection(collectionName).doc(itemId).delete();
+
+    return true;
   }
 }
