@@ -9,13 +9,16 @@ export interface ILinesStyles {
 
 export type VerticalPosition = 'bottom' | 'top';
 
-enum Status {
+export enum Status {
   NONE,
   COMPLETED,
 }
 
-export interface ITask {
+export interface IWithID {
   id: string;
+}
+
+export interface ITask extends IWithID {
   ownerUid: string;
   title: string;
   description: string;
@@ -23,8 +26,7 @@ export interface ITask {
   status: Status;
 }
 
-export interface INote {
-  id: string;
+export interface INote extends IWithID {
   ownerUid: string;
   title: string;
   body: string;
