@@ -32,7 +32,6 @@ export function addTask() {}
 
 export function* updateTask({ task }: UpdateTaskAction) {
   try {
-    console.tron?.log(task);
     yield FirebaseHelper.updateDoc<ITask>(FIREBASE_TASKS_COLLECTION_NAME, task);
 
     yield put<UpdateTaskSuccessAction>(tasksActionCreators.updateTaskSuccess(task));

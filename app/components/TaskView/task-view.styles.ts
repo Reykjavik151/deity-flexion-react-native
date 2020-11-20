@@ -13,6 +13,7 @@ export default StyleSheet.create<TaskViewStyles>({
     paddingLeft: 16,
     paddingVertical: 8,
     marginBottom: 16,
+    opacity: 0.7,
   },
   uncompletedContainer: {
     marginRight: 64,
