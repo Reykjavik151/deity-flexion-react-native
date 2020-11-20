@@ -84,8 +84,8 @@ interface TasksActionCreators {
   updateTaskFailure(error: string): UpdateTaskFailureAction;
 
   deleteTask(taskId: string): DeleteTaskAction;
-  deleteTask(taskId: string): DeleteTaskSuccessAction;
-  deleteTask(error: string): DeleteTaskFailureAction;
+  deleteTaskSuccess(taskId: string): DeleteTaskSuccessAction;
+  deleteTaskFailure(error: string): DeleteTaskFailureAction;
 }
 
 export type TasksAction =

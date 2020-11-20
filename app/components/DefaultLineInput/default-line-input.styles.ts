@@ -13,7 +13,8 @@ export default StyleSheet.create<DefaultLineInputStyles>({
     justifyContent: 'center',
   },
   titleContainer: {
-    marginBottom: 16,
+    marginTop: 16,
+    marginLeft: 8,
   },
   titleText: {
     color: COLORS.WHITE,

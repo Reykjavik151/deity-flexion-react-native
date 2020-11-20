@@ -14,7 +14,7 @@ import { useGetTasksCallback, useTasks, useUpdateTaskCallback } from '../../redu
 import { TaskView } from '../../components/TaskView';
 import { ITask, Status } from '../../utils/types';
 
-export const TasksScreen: React.FunctionComponent<TasksScreenProps> = () => {
+export const TasksScreen: React.FunctionComponent<TasksScreenProps> = ({ navigation }) => {
   const dispatch = useDispatch();
   const onGetTasks = useGetTasksCallback(dispatch);
   const onUpdateTask = useUpdateTaskCallback(dispatch);
@@ -25,7 +25,9 @@ export const TasksScreen: React.FunctionComponent<TasksScreenProps> = () => {
     onGetTasks();
   }, [onGetTasks]);
 
-  const onAddPress = useCallback(() => {}, []);
+  const onAddPress = useCallback(() => {
+    navigation.navigate('TasksAdd');
+  }, [navigation]);
 
   const onTaskPress = useCallback(
     (task: ITask) => {
@@ -43,7 +45,12 @@ export const TasksScreen: React.FunctionComponent<TasksScreenProps> = () => {
     [onUpdateTask],
   );
 
-  const onTaskLongPress = useCallback((task: ITask) => task, []);
+  const onTaskLongPress = useCallback(
+    (task: ITask) => {
+      navigation.navigate('TasksAdd', { task });
+    },
+    [navigation],
+  );
 
   return (
     <View style={styles.container}>

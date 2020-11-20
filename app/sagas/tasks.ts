@@ -3,10 +3,16 @@ import { call, put, select } from 'redux-saga/effects';
 import {
   GetTasksFailureAction,
   GetTasksSuccessAction,
+  AddTaskAction,
+  AddTaskSuccessAction,
+  AddTaskFailureAction,
   tasksActionCreators,
   UpdateTaskAction,
   UpdateTaskFailureAction,
   UpdateTaskSuccessAction,
+  DeleteTaskAction,
+  DeleteTaskSuccessAction,
+  DeleteTaskFailureAction,
 } from '../redux/tasks';
 import { FirebaseHelper } from '../services/firebase';
 import { FIREBASE_TASKS_COLLECTION_NAME } from '../utils/constants';
@@ -28,7 +34,15 @@ export function* getTasks() {
   }
 }
 
-export function addTask() {}
+export function* addTask({ task }: AddTaskAction) {
+  try {
+    const taskWithId = yield FirebaseHelper.addDoc<ITask>(FIREBASE_TASKS_COLLECTION_NAME, task);
+
+    yield put<AddTaskSuccessAction>(tasksActionCreators.addTaskSuccess(taskWithId));
+  } catch (err) {
+    yield put<AddTaskFailureAction>(tasksActionCreators.addTaskFailure(err));
+  }
+}
 
 export function* updateTask({ task }: UpdateTaskAction) {
   try {
@@ -37,5 +51,22 @@ export function* updateTask({ task }: UpdateTaskAction) {
     yield put<UpdateTaskSuccessAction>(tasksActionCreators.updateTaskSuccess(task));
   } catch (err) {
     yield put<UpdateTaskFailureAction>(tasksActionCreators.updateTaskFailure(err));
+  }
+}
+
+export function* deleteTask({ taskId }: DeleteTaskAction) {
+  try {
+    const isDeleted: boolean = yield FirebaseHelper.deleteDoc(
+      FIREBASE_TASKS_COLLECTION_NAME,
+      taskId,
+    );
+
+    if (isDeleted) {
+      yield put<DeleteTaskSuccessAction>(tasksActionCreators.deleteTaskSuccess(taskId));
+    } else {
+      throw new Error("Task Delete: TaskID can't be found");
+    }
+  } catch (err) {
+    yield put<DeleteTaskFailureAction>(tasksActionCreators.deleteTaskFailure(err));
   }
 }

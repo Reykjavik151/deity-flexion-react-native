@@ -4,10 +4,11 @@ interface CommonStyles {
   flexContainer: ViewStyle;
   centeredContainer: ViewStyle;
   rowContainer: ViewStyle;
+  mb12: ViewStyle;
   mb18: ViewStyle;
+  mb32: ViewStyle;
   w100: ViewStyle;
   rotation270: ViewStyle;
-  mb12: ViewStyle;
   opacity70: ViewStyle;
   reverted: ViewStyle;
 }
@@ -29,6 +30,9 @@ export const COMMON_STYLES = StyleSheet.create<CommonStyles>({
   },
   mb18: {
     marginBottom: 18,
+  },
+  mb32: {
+    marginBottom: 32,
   },
   w100: {
     width: '100%',
