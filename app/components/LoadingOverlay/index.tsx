@@ -4,6 +4,7 @@ import { View, Animated } from 'react-native';
 import styles from './loading-overlay.styles';
 import { LoadingOverlayProps } from './loading-overlay.props';
 import { useUserLoading } from '../../redux/user';
+import { useTasksLoading } from '../../redux/tasks';
 
 const ANIMATION_DURATION_MS = 300;
 const LOADER_ANIMATION_STATE = {
@@ -15,6 +16,7 @@ const MAX_LOADER_SIZE = 64;
 
 export const LoadingOverlay: React.FunctionComponent<LoadingOverlayProps> = () => {
   const userLoading = useUserLoading();
+  const tasksLoading = useTasksLoading();
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const loaderSize = useRef(new Animated.Value(0));
   const [loaderAnimationState, setLoaderAnimationState] = useState<string>(
@@ -22,7 +24,6 @@ export const LoadingOverlay: React.FunctionComponent<LoadingOverlayProps> = () =
   );
 
   const animateLoader = useCallback(() => {
-    console.tron.log('animation started');
     let toValue: number;
     switch (loaderAnimationState) {
       default:
@@ -56,9 +57,9 @@ export const LoadingOverlay: React.FunctionComponent<LoadingOverlayProps> = () =
   }, [loaderSize]);
 
   useEffect(() => {
-    const newIsVisible = userLoading;
+    const newIsVisible = userLoading || tasksLoading;
     setIsVisible(newIsVisible);
-  }, [userLoading]);
+  }, [userLoading, tasksLoading]);
 
   useEffect(() => {
     if (isVisible) {

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -8,8 +8,18 @@ import { DefaultHeader, Line } from '../../components';
 import { LINE_HEIGHT } from '../../components/Line/line.presets';
 import { COMMON_STYLES } from '../../utils/commonStyles';
 import { COLORS } from '../../utils/colors';
+import { useDispatch } from 'react-redux';
+import { useGetTasksCallback } from '../../redux/tasks';
 
 export const TasksScreen: React.FunctionComponent<TasksScreenProps> = () => {
+  const dispatch = useDispatch();
+  const onGetTasks = useGetTasksCallback(dispatch);
+
+  useEffect(() => {
+    console.tron.log('ON GET TASKS!');
+    onGetTasks();
+  }, [onGetTasks]);
+
   const onAddPress = useCallback(() => {}, []);
 
   return (

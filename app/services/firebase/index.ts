@@ -2,7 +2,7 @@ import firebaseAuth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import _ from 'lodash';
 
-import { IWithID, Status } from '../../utils/types';
+import { IWithID } from '../../utils/types';
 
 export class FirebaseHelper {
   static login(email: string, password: string): Promise<FirebaseAuthTypes.UserCredential> {

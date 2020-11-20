@@ -31,7 +31,7 @@ const getTasks: Handler<GetTasksAction> = (state) => ({
 const getTasksSuccess: Handler<GetTasksSuccessAction> = (state, { tasks }) => ({
   ...state,
   tasks,
-  isLoading: true,
+  isLoading: false,
 });
 
 const getTasksFailure: Handler<GetTasksFailureAction> = (state, { error }) => ({
