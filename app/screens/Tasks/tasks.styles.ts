@@ -4,6 +4,7 @@ import { COLORS } from '../../utils/colors';
 interface TasksScreenStyles {
   container: ViewStyle;
   addButtonContainer: ViewStyle;
+  taskList: ViewStyle;
 }
 
 export default StyleSheet.create<TasksScreenStyles>({
@@ -20,4 +21,5 @@ export default StyleSheet.create<TasksScreenStyles>({
     borderColor: 'silver',
     borderWidth: 2,
   },
+  taskList: { transform: [{ scaleY: -1 }] },
 });

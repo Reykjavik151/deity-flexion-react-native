@@ -9,6 +9,7 @@ interface CommonStyles {
   rotation270: ViewStyle;
   mb12: ViewStyle;
   opacity70: ViewStyle;
+  reverted: ViewStyle;
 }
 
 export const COMMON_STYLES = StyleSheet.create<CommonStyles>({
@@ -37,5 +38,8 @@ export const COMMON_STYLES = StyleSheet.create<CommonStyles>({
   },
   opacity70: {
     opacity: 0.7,
+  },
+  reverted: {
+    transform: [{ scaleY: -1 }],
   },
 });

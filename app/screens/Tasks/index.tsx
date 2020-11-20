@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, FlatList } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './tasks.styles';
@@ -9,24 +9,37 @@ import { LINE_HEIGHT } from '../../components/Line/line.presets';
 import { COMMON_STYLES } from '../../utils/commonStyles';
 import { COLORS } from '../../utils/colors';
 import { useDispatch } from 'react-redux';
-import { useGetTasksCallback } from '../../redux/tasks';
+import { useGetTasksCallback, useTasks } from '../../redux/tasks';
+import { TaskView } from '../../components/TaskView';
+import { ITask } from '../../utils/types';
 
 export const TasksScreen: React.FunctionComponent<TasksScreenProps> = () => {
   const dispatch = useDispatch();
   const onGetTasks = useGetTasksCallback(dispatch);
 
+  const tasks = useTasks();
+
   useEffect(() => {
-    console.tron.log('ON GET TASKS!');
     onGetTasks();
   }, [onGetTasks]);
 
   const onAddPress = useCallback(() => {}, []);
 
+  const onTaskPress = useCallback((task: ITask) => {
+    console.tron.log('task is pressed', task);
+  }, []);
+
   return (
     <View style={styles.container}>
       <DefaultHeader preset="top" title="Tasks" />
 
-      <View style={COMMON_STYLES.flexContainer} />
+      <View style={COMMON_STYLES.flexContainer}>
+        <FlatList
+          data={tasks}
+          renderItem={({ item: task }) => <TaskView task={task} onTaskPress={onTaskPress} />}
+          style={styles.taskList}
+        />
+      </View>
 
       <Line height={LINE_HEIGHT.SMALL} />
       <Line height={LINE_HEIGHT.LARGE} style={{ lineContainer: COMMON_STYLES.opacity70 }} />
