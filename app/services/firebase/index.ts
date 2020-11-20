@@ -27,18 +27,20 @@ export class FirebaseHelper {
 
     _.forEach(snapshots.docs, (doc) => {
       const docData: FirebaseFirestoreTypes.DocumentData = doc.data();
-      const pushData = {
+      const pushData: any = {
         id: doc.id,
         ...docData,
       };
 
-      if (docData.status) {
+      if (pushData.status) {
         switch (docData.status) {
           default:
           case Status.NONE.toString().toLowerCase():
-            return Status.NONE;
+            pushData.status = Status.NONE;
+            break;
           case Status.COMPLETED.toString().toLowerCase():
-            return Status.COMPLETED;
+            pushData.status = Status.COMPLETED;
+            break;
         }
       }
 
@@ -59,5 +61,20 @@ export class FirebaseHelper {
       ...item,
       id: docRef.id,
     };
+  }
+
+  static async updateDocInCollection<T extends IWithID>(
+    collectionName: string,
+    item: T,
+  ): Promise<T> {
+    const itemId = item.id;
+
+    const docRef: FirebaseFirestoreTypes.DocumentReference = firestore()
+      .collection(collectionName)
+      .doc(itemId);
+
+    const result: any = await docRef.update({ ...item, id: undefined });
+
+    return { ...result, id: itemId };
   }
 }
