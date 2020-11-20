@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { View, TouchableOpacity, FlatList } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import _ from 'lodash';
 
 import styles from './tasks.styles';
 import { TasksScreenProps } from './tasks.props';
@@ -11,11 +12,12 @@ import { COLORS } from '../../utils/colors';
 import { useDispatch } from 'react-redux';
 import { useGetTasksCallback, useTasks } from '../../redux/tasks';
 import { TaskView } from '../../components/TaskView';
-import { ITask } from '../../utils/types';
+import { ITask, Status } from '../../utils/types';
 
 export const TasksScreen: React.FunctionComponent<TasksScreenProps> = () => {
   const dispatch = useDispatch();
   const onGetTasks = useGetTasksCallback(dispatch);
+  const onUpdateTask = useCallback((task: ITask) => task, []);
 
   const tasks = useTasks();
 
@@ -25,9 +27,23 @@ export const TasksScreen: React.FunctionComponent<TasksScreenProps> = () => {
 
   const onAddPress = useCallback(() => {}, []);
 
-  const onTaskPress = useCallback((task: ITask) => {
-    console.tron.log('task is pressed', task);
-  }, []);
+  const onTaskPress = useCallback(
+    (task: ITask) => {
+      switch (task.status) {
+        case Status.COMPLETED:
+          task.status = Status.NONE;
+          break;
+        case Status.NONE:
+          task.status = Status.COMPLETED;
+          break;
+      }
+
+      onUpdateTask(task);
+    },
+    [onUpdateTask],
+  );
+
+  const onTaskLongPress = useCallback((task: ITask) => task, []);
 
   return (
     <View style={styles.container}>
@@ -36,7 +52,9 @@ export const TasksScreen: React.FunctionComponent<TasksScreenProps> = () => {
       <View style={COMMON_STYLES.flexContainer}>
         <FlatList
           data={tasks}
-          renderItem={({ item: task }) => <TaskView task={task} onTaskPress={onTaskPress} />}
+          renderItem={({ item: task }) => (
+            <TaskView task={task} onTaskPress={onTaskPress} onTaskLongPress={onTaskLongPress} />
+          )}
           style={styles.taskList}
         />
       </View>
