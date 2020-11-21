@@ -8,17 +8,19 @@ import rootSaga from '../sagas';
 // Reducers
 import { userReducer } from './user';
 import { tasksReducer } from './tasks';
+import { notesReducer } from './notes';
 
 export const rootReducer = combineReducers({
   user: userReducer,
   tasks: tasksReducer,
+  notes: notesReducer,
 });
 
 const persistConfig: PersistConfig<ReturnType<typeof rootReducer>> = {
   key: 'root',
   storage: AsyncStorage,
   // TODO: remove it for production
-  blacklist: ['tasks'],
+  blacklist: ['tasks', 'notes'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

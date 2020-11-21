@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { DefaultHeader, Line, NoteView } from '../../components';
 import { LINE_HEIGHT } from '../../components/Line/line.presets';
+import { useGetNotesCallback, useNotes } from '../../redux/notes';
 import { COLORS } from '../../utils/colors';
 import { COMMON_STYLES } from '../../utils/commonStyles';
 import { INote } from '../../utils/types';
@@ -13,10 +14,9 @@ import styles from './notes.styles';
 
 export const NotesScreen: React.FunctionComponent<NotesScreenProps> = ({ navigation }) => {
   const dispatch = useDispatch();
-  const onGetNotes = () => {}; // useGetTasksCallback(dispatch);
-  const onUpdateNote = () => {}; //useUpdateTaskCallback(dispatch);
+  const onGetNotes = useGetNotesCallback(dispatch);
 
-  const notes = []; // useNotes();
+  const notes = useNotes();
 
   useEffect(() => {
     onGetNotes();
@@ -26,14 +26,7 @@ export const NotesScreen: React.FunctionComponent<NotesScreenProps> = ({ navigat
     navigation.navigate('NotesAdd');
   }, [navigation]);
 
-  const onNotePress = useCallback(
-    (note: INote) => {
-      onUpdateNote(note);
-    },
-    [onUpdateNote],
-  );
-
-  const onNoteLongPress = useCallback(
+  const onNoteEdit = useCallback(
     (note: INote) => {
       navigation.navigate('NotesAdd', { note });
     },
@@ -52,7 +45,7 @@ export const NotesScreen: React.FunctionComponent<NotesScreenProps> = ({ navigat
           showsVerticalScrollIndicator={false}
           data={notes}
           renderItem={({ item: note }) => (
-            <NoteView note={note} onNotePress={onNotePress} onNoteLongPress={onNoteLongPress} />
+            <NoteView note={note} onNotePress={onNoteEdit} onNoteLongPress={onNoteEdit} />
           )}
           keyExtractor={(item, index) => `note-${index}-${item.id}`}
           contentContainerStyle={styles.listContentContainer}
