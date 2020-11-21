@@ -21,8 +21,8 @@ export const NoteView: React.FunctionComponent<NoteViewProps> = ({
   }, [onNoteLongPress, note]);
 
   return (
-    <TouchableOpacity onPress={onPress} onLongPress={onLongPress}>
-      <Line style={{ lineContainer: COMMON_STYLES.centeredContainer }}>
+    <TouchableOpacity onPress={onPress} onLongPress={onLongPress} style={styles.container}>
+      <Line style={{ lineContainer: [COMMON_STYLES.centeredContainer, styles.lineContainer] }}>
         <Text style={styles.title}>{note.title}</Text>
         <Text style={styles.description}>{note.body}</Text>
       </Line>
