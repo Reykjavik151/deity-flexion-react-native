@@ -1,6 +1,12 @@
 import React from 'react';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
-import { HomeScreen, NotesScreen, TasksAddScreen, TasksScreen } from '../../screens';
+import {
+  HomeScreen,
+  NotesAddScreen,
+  NotesScreen,
+  TasksAddScreen,
+  TasksScreen,
+} from '../../screens';
 import { INote, ITask } from '../../utils/types';
 import { WITHOUT_HEADER_OPTIONS } from '../options';
 
@@ -20,5 +26,6 @@ export const HomeStackNavigator = () => (
     <HomeStack.Screen name="Tasks" component={TasksScreen} />
     <HomeStack.Screen name="TasksAdd" component={TasksAddScreen} />
     <HomeStack.Screen name="Notes" component={NotesScreen} />
+    <HomeStack.Screen name="NotesAdd" component={NotesAddScreen} />
   </HomeStack.Navigator>
 );

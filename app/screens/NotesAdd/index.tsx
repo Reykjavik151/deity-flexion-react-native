@@ -3,60 +3,59 @@ import { View, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
-import styles from './tasks-add.styles';
-import { TasksAddScreenProps } from './tasks-add.props';
+import styles from './notes-add.styles';
+import { NotesAddScreenProps } from './notes-add.props';
 import { DefaultHeader, DefaultLineInput, Line } from '../../components';
 import { COMMON_STYLES } from '../../utils/commonStyles';
 import { LINE_HEIGHT } from '../../components/Line/line.presets';
 import {
-  useAddTaskCallback,
-  useDeleteTaskCallback,
-  useUpdateTaskCallback,
-} from '../../redux/tasks';
+  useAddNoteCallback,
+  useDeleteNoteCallback,
+  useUpdateNoteCallback,
+} from '../../redux/notes';
 import { Status } from '../../utils/types';
 import { useUserCredentials } from '../../redux/user';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export const TasksAddScreen: React.FunctionComponent<TasksAddScreenProps> = ({
+export const NotesAddScreen: React.FunctionComponent<NotesAddScreenProps> = ({
   route,
   navigation,
 }) => {
-  const task = useMemo(() => route.params?.task, [route]);
+  const note = useMemo(() => route.params?.note, [route]);
   const user = useUserCredentials();
 
   const dispatch = useDispatch();
-  const onAddTask = useAddTaskCallback(dispatch);
-  const onUpdateTask = useUpdateTaskCallback(dispatch);
-  const onDeleteTask = useDeleteTaskCallback(dispatch);
+  const onAddNote = useAddNoteCallback(dispatch);
+  const onUpdateNote = useUpdateNoteCallback(dispatch);
+  const onDeleteNote = useDeleteNoteCallback(dispatch);
 
-  const [title, setTitle] = useState(task?.title ?? '');
-  const [description, setDescription] = useState(task?.description ?? '');
+  const [title, setTitle] = useState(note?.title ?? '');
+  const [body, setBody] = useState(note?.body ?? '');
 
   const onSubmit = useCallback(() => {
-    if (task) {
-      onUpdateTask({ ...task, title, description });
+    if (note) {
+      onUpdateNote({ ...note, title, body });
     } else {
-      onAddTask({
+      onAddNote({
         id: '',
         ownerUid: user?.user.uid!,
-        status: Status.NONE,
         title,
-        description,
+        body,
         createdAt: moment().toISOString(),
       });
     }
 
     navigation.goBack();
-  }, [navigation, description, title, user, onAddTask, onUpdateTask, task]);
+  }, [navigation, title, body, user, onAddNote, onUpdateNote, note]);
 
   const onDeletePress = useCallback(() => {
-    onDeleteTask(task?.id!);
+    onDeleteNote(note?.id!);
     navigation.goBack();
-  }, [onDeleteTask, task, navigation]);
+  }, [onDeleteNote, note, navigation]);
 
   return (
     <View style={styles.container}>
-      <DefaultHeader preset="top" title={task ? 'Edit Task' : 'Add Task'} />
+      <DefaultHeader preset="top" title={note ? 'Edit Note' : 'Add Note'} />
 
       <DefaultLineInput
         title="Title"
@@ -66,10 +65,10 @@ export const TasksAddScreen: React.FunctionComponent<TasksAddScreenProps> = ({
         }}
       />
       <DefaultLineInput
-        title="Description"
+        title="Body"
         inputProps={{
-          value: description,
-          onChangeText: setDescription,
+          value: body,
+          onChangeText: setBody,
         }}
         style={{
           lineContainer: COMMON_STYLES.mb18,
@@ -80,10 +79,10 @@ export const TasksAddScreen: React.FunctionComponent<TasksAddScreenProps> = ({
           height={LINE_HEIGHT.BUTTON}
           style={{ lineContainer: [COMMON_STYLES.centeredContainer, COMMON_STYLES.mb18] }}
         >
-          <Text style={styles.submitText}>{task ? 'Edit' : 'Save'}</Text>
+          <Text style={styles.submitText}>{note ? 'Edit' : 'Save'}</Text>
         </Line>
       </TouchableOpacity>
-      {task && (
+      {note && (
         <TouchableOpacity onPress={onDeletePress}>
           <Line
             height={LINE_HEIGHT.BUTTON}
