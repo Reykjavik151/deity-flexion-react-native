@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { View, Text } from 'react-native';
+import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
 import styles from './tasks-add.styles';
@@ -7,7 +8,6 @@ import { TasksAddScreenProps } from './tasks-add.props';
 import { DefaultHeader, DefaultLineInput, Line } from '../../components';
 import { COMMON_STYLES } from '../../utils/commonStyles';
 import { LINE_HEIGHT } from '../../components/Line/line.presets';
-import { useDispatch } from 'react-redux';
 import {
   useAddTaskCallback,
   useDeleteTaskCallback,

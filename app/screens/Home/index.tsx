@@ -27,6 +27,7 @@ export const HomeScreen: FunctionComponent<HomeScreenProps> = ({ navigation }) =
       <Line height={LINE_HEIGHT.SMALL} />
       <View style={[COMMON_STYLES.flexContainer, COMMON_STYLES.centeredContainer]}>
         <TouchableOpacity
+          onPress={() => navigation.navigate('Notes')}
           style={[styles.button, COMMON_STYLES.centeredContainer, COMMON_STYLES.rotation270]}
         >
           <MaterialIcon name="note" size={115} color={COLORS.PRIMARY_BLUE} />

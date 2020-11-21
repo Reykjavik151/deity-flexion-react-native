@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
-import { SafeAreaView, Text, ViewStyle } from 'react-native';
+import { SafeAreaView, Text, TextStyle, ViewStyle } from 'react-native';
 
 import styles from './default-header.styles';
 import { DefaultHeaderProps } from './default-header.props';
+import { COMMON_STYLES } from '../../utils/commonStyles';
 
 export const DefaultHeader: React.FunctionComponent<DefaultHeaderProps> = ({ preset, title }) => {
   const additionalContainerStyle: ViewStyle = useMemo(
@@ -10,9 +11,14 @@ export const DefaultHeader: React.FunctionComponent<DefaultHeaderProps> = ({ pre
     [preset],
   );
 
+  const additionalTitleStyle: TextStyle = useMemo(
+    () => (preset === 'bottom' ? COMMON_STYLES.mt18 : COMMON_STYLES.mb18),
+    [preset],
+  );
+
   return (
     <SafeAreaView style={[styles.container, additionalContainerStyle]}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={[styles.title, additionalTitleStyle]}>{title}</Text>
     </SafeAreaView>
   );
 };

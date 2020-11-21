@@ -25,6 +25,5 @@ export default StyleSheet.create<DefaultHeaderStyles>({
   title: {
     fontSize: 26,
     color: COLORS.BLUE,
-    paddingBottom: 16,
   },
 });

@@ -4,6 +4,7 @@ interface CommonStyles {
   flexContainer: ViewStyle;
   centeredContainer: ViewStyle;
   rowContainer: ViewStyle;
+  mt18: ViewStyle;
   mb12: ViewStyle;
   mb18: ViewStyle;
   mb32: ViewStyle;
@@ -24,6 +25,9 @@ export const COMMON_STYLES = StyleSheet.create<CommonStyles>({
   rowContainer: {
     flexDirection: 'row',
     width: '100%',
+  },
+  mt18: {
+    marginTop: 18,
   },
   mb12: {
     marginBottom: 12,
