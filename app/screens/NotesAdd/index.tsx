@@ -69,6 +69,9 @@ export const NotesAddScreen: React.FunctionComponent<NotesAddScreenProps> = ({
         inputProps={{
           value: body,
           onChangeText: setBody,
+          style: styles.multilineBodyContainer,
+          multiline: true,
+          numberOfLines: 4,
         }}
         style={{
           lineContainer: COMMON_STYLES.mb18,

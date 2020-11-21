@@ -5,6 +5,7 @@ interface NotesAddScreenStyles {
   container: ViewStyle;
   submitText: TextStyle;
   deleteButtonContainer: ViewStyle;
+  multilineBodyContainer: ViewStyle;
 }
 
 export default StyleSheet.create<NotesAddScreenStyles>({
@@ -19,4 +20,5 @@ export default StyleSheet.create<NotesAddScreenStyles>({
   deleteButtonContainer: {
     backgroundColor: COLORS.LIGHT_RED,
   },
+  multilineBodyContainer: { paddingTop: 16, maxHeight: 300 },
 });
