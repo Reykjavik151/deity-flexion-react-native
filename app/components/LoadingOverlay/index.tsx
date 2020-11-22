@@ -5,6 +5,7 @@ import styles from './loading-overlay.styles';
 import { LoadingOverlayProps } from './loading-overlay.props';
 import { useUserLoading } from '../../redux/user';
 import { useTasksLoading } from '../../redux/tasks';
+import { useNotesLoading } from '../../redux/notes';
 
 const ANIMATION_DURATION_MS = 300;
 const LOADER_ANIMATION_STATE = {
@@ -17,6 +18,7 @@ const MAX_LOADER_SIZE = 64;
 export const LoadingOverlay: React.FunctionComponent<LoadingOverlayProps> = () => {
   const userLoading = useUserLoading();
   const tasksLoading = useTasksLoading();
+  const notesLoading = useNotesLoading();
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const loaderSize = useRef(new Animated.Value(0));
   const [loaderAnimationState, setLoaderAnimationState] = useState<string>(
@@ -57,7 +59,7 @@ export const LoadingOverlay: React.FunctionComponent<LoadingOverlayProps> = () =
   }, [loaderSize]);
 
   useEffect(() => {
-    const newIsVisible = userLoading || tasksLoading;
+    const newIsVisible = userLoading || tasksLoading || notesLoading;
     setIsVisible(newIsVisible);
   }, [userLoading, tasksLoading]);
 

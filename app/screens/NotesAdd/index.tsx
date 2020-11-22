@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
@@ -54,7 +54,7 @@ export const NotesAddScreen: React.FunctionComponent<NotesAddScreenProps> = ({
   }, [onDeleteNote, note, navigation]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <DefaultHeader preset="top" title={note ? 'Edit Note' : 'Add Note'} />
 
       <DefaultLineInput
@@ -108,6 +108,6 @@ export const NotesAddScreen: React.FunctionComponent<NotesAddScreenProps> = ({
       <Line height={LINE_HEIGHT.SMALL} />
 
       <View style={COMMON_STYLES.flexContainer} />
-    </View>
+    </ScrollView>
   );
 };
