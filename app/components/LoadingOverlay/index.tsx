@@ -61,7 +61,7 @@ export const LoadingOverlay: React.FunctionComponent<LoadingOverlayProps> = () =
   useEffect(() => {
     const newIsVisible = userLoading || tasksLoading || notesLoading;
     setIsVisible(newIsVisible);
-  }, [userLoading, tasksLoading]);
+  }, [userLoading, tasksLoading, notesLoading]);
 
   useEffect(() => {
     if (isVisible) {
