@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 import styles from './login-form.styles';
@@ -14,6 +14,12 @@ export const LoginForm: React.FunctionComponent<LoginFormProps> = ({
 }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const onValidate = useCallback(() => {
+    if (email && password) {
+      onSubmit(email, password);
+    }
+  }, [email, password, onSubmit]);
 
   return (
     <View style={styles.container}>
@@ -35,7 +41,7 @@ export const LoginForm: React.FunctionComponent<LoginFormProps> = ({
         style={{ lineContainer: COMMON_STYLES.mb18 }}
       />
 
-      <TouchableOpacity onPress={() => onSubmit(email, password)}>
+      <TouchableOpacity onPress={onValidate}>
         <Line
           height={LINE_HEIGHT.BUTTON}
           style={{
