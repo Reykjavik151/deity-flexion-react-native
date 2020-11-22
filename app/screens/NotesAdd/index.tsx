@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
@@ -52,60 +52,61 @@ export const NotesAddScreen: React.FunctionComponent<NotesAddScreenProps> = ({
   }, [onDeleteNote, note, navigation]);
 
   return (
-    <ScrollView style={styles.container}>
-      <DefaultHeader preset="top" title={note ? 'Edit Note' : 'Add Note'} />
+    <ScrollView style={styles.container} contentContainerStyle={COMMON_STYLES.flexContainer}>
+      <KeyboardAvoidingView behavior="padding" style={COMMON_STYLES.flexContainer}>
+        <View style={COMMON_STYLES.flexContainer} />
+        <Line height={LINE_HEIGHT.SMALL} style={{ lineContainer: COMMON_STYLES.mb12 }} />
+        <Line height={LINE_HEIGHT.LARGE} style={{ lineContainer: COMMON_STYLES.mb18 }} />
+        <Line height={LINE_HEIGHT.LARGE} style={{ lineContainer: COMMON_STYLES.mb12 }} />
+        <Line height={LINE_HEIGHT.SMALL} />
 
-      <DefaultLineInput
-        title="Title"
-        inputProps={{
-          value: title,
-          onChangeText: setTitle,
-        }}
-      />
-      <DefaultLineInput
-        title="Body"
-        inputProps={{
-          value: body,
-          onChangeText: setBody,
-          style: styles.multilineBodyContainer,
-          multiline: true,
-          numberOfLines: 4,
-        }}
-        style={{
-          lineContainer: COMMON_STYLES.mb18,
-        }}
-      />
-      <TouchableOpacity onPress={onSubmit}>
-        <Line
-          height={LINE_HEIGHT.BUTTON}
-          style={{ lineContainer: [COMMON_STYLES.centeredContainer, COMMON_STYLES.mb18] }}
-        >
-          <Text style={styles.submitText}>{note ? 'Edit' : 'Save'}</Text>
-        </Line>
-      </TouchableOpacity>
-      {note && (
-        <TouchableOpacity onPress={onDeletePress}>
+        <DefaultLineInput
+          title="Title"
+          inputProps={{
+            value: title,
+            onChangeText: setTitle,
+          }}
+        />
+        <DefaultLineInput
+          title="Body"
+          inputProps={{
+            value: body,
+            onChangeText: setBody,
+            style: styles.multilineBodyContainer,
+            multiline: true,
+            numberOfLines: 4,
+          }}
+          style={{
+            lineContainer: COMMON_STYLES.mb18,
+          }}
+        />
+        <TouchableOpacity onPress={onSubmit}>
           <Line
             height={LINE_HEIGHT.BUTTON}
-            style={{
-              lineContainer: [
-                styles.deleteButtonContainer,
-                COMMON_STYLES.centeredContainer,
-                COMMON_STYLES.mb32,
-              ],
-            }}
+            style={{ lineContainer: [COMMON_STYLES.centeredContainer, COMMON_STYLES.mb18] }}
           >
-            <Text style={styles.submitText}>Delete</Text>
+            <Text style={styles.submitText}>{note ? 'Edit' : 'Save'}</Text>
           </Line>
         </TouchableOpacity>
-      )}
+        {note && (
+          <TouchableOpacity onPress={onDeletePress}>
+            <Line
+              height={LINE_HEIGHT.BUTTON}
+              style={{
+                lineContainer: [
+                  styles.deleteButtonContainer,
+                  COMMON_STYLES.centeredContainer,
+                  COMMON_STYLES.mb32,
+                ],
+              }}
+            >
+              <Text style={styles.submitText}>Delete</Text>
+            </Line>
+          </TouchableOpacity>
+        )}
 
-      <Line height={LINE_HEIGHT.SMALL} style={{ lineContainer: COMMON_STYLES.mb12 }} />
-      <Line height={LINE_HEIGHT.LARGE} style={{ lineContainer: COMMON_STYLES.mb18 }} />
-      <Line height={LINE_HEIGHT.LARGE} style={{ lineContainer: COMMON_STYLES.mb12 }} />
-      <Line height={LINE_HEIGHT.SMALL} />
-
-      <View style={COMMON_STYLES.flexContainer} />
+        <DefaultHeader preset="bottom" title={note ? 'Edit Note' : 'Add Note'} />
+      </KeyboardAvoidingView>
     </ScrollView>
   );
 };
