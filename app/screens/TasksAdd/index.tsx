@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
@@ -15,7 +15,6 @@ import {
 } from '../../redux/tasks';
 import { Status } from '../../utils/types';
 import { useUserCredentials } from '../../redux/user';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const TasksAddScreen: React.FunctionComponent<TasksAddScreenProps> = ({
   route,

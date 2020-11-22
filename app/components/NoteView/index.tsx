@@ -1,11 +1,10 @@
 import React, { useCallback } from 'react';
-import { Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
 import styles from './note-view.styles';
 import { Line } from '../Line';
 import { NoteViewProps } from './note-view.props';
 import { COMMON_STYLES } from '../../utils/commonStyles';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const NoteView: React.FunctionComponent<NoteViewProps> = ({
   note,

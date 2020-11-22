@@ -1,12 +1,11 @@
 import React, { useCallback, useMemo } from 'react';
-import { Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
 import styles from './task-view.styles';
 import { Status } from '../../utils/types';
 import { Line } from '../Line';
 import { TaskViewProps } from './task-view.props';
 import { COMMON_STYLES } from '../../utils/commonStyles';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const TaskView: React.FunctionComponent<TaskViewProps> = ({
   task,

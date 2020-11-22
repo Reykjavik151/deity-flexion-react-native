@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
@@ -13,9 +13,7 @@ import {
   useDeleteNoteCallback,
   useUpdateNoteCallback,
 } from '../../redux/notes';
-import { Status } from '../../utils/types';
 import { useUserCredentials } from '../../redux/user';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const NotesAddScreen: React.FunctionComponent<NotesAddScreenProps> = ({
   route,

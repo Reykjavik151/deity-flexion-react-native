@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { SafeAreaView, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { SafeAreaView, View, TouchableOpacity } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import { Line } from '../../components';
