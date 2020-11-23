@@ -22,6 +22,7 @@ export default StyleSheet.create<DefaultLineInputStyles>({
     fontWeight: 'bold',
   },
   input: {
+    textAlignVertical: 'top',
     padding: 16,
     fontSize: 26,
     fontWeight: 'bold',
